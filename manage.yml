@@ -1,8 +1,19 @@
-click_commands: []
+groups:
+  - image:
+      help_text: Functions to edit images
+  - utils:
+      help_text: Utilities and inutilities
 function_commands:
+  - function: program.convert_to_bw
+    group: image
+    name: to_bw
+    help_text: converts an image to black and white
+    arguments:
+      - image_path
   - function: program.rotate
+    group: image
     name: rotate
-    help_text: Rotaciona imagem ....
+    help_text: rotates image
     arguments:
       - image_path
     options:
@@ -12,7 +23,8 @@ function_commands:
 help_text: This is the {project_name} interactive shell
 inline_commands:
   - name: say_hi
-    help_text: Diz Hi
+    group: utils
+    help_text: say_hi to anyone
     context:
       - pyfiglet
     options:
@@ -21,7 +33,8 @@ inline_commands:
       --font:
         default: slant
     code: |
-      print(pyfiglet.Figlet(font=font).renderText("Hi, %s" % name)) 
+      # print("Hi, %s" % name)
+      print(pyfiglet.Figlet(font=font).renderText("Hi, %s" % name))
 project_name: Image Converter
 shell:
   auto_import:
@@ -35,6 +48,5 @@ shell:
         as: path
   banner:
     enabled: true
-    message: Manage Interactive Shell! edit your `manage.yml`
-  init_script: print("Starting interactive shell!")
+    message: Welcome to {project_name}
   readline_enabled: false
