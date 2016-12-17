@@ -1,0 +1,40 @@
+click_commands: []
+function_commands:
+  - function: program.rotate
+    name: rotate
+    help_text: Rotaciona imagem ....
+    arguments:
+      - image_path
+    options:
+      --degrees:
+        required: true
+        type: float
+help_text: This is the {project_name} interactive shell
+inline_commands:
+  - name: say_hi
+    help_text: Diz Hi
+    context:
+      - pyfiglet
+    options:
+      --name:
+        default: Guido
+      --font:
+        default: slant
+    code: |
+      print(pyfiglet.Figlet(font=font).renderText("Hi, %s" % name)) 
+project_name: Image Converter
+shell:
+  auto_import:
+    display: true
+    objects:
+      program.convert_to_bw:
+        as: to_bw
+      program.rotate:
+        as: rotate
+      os.path:
+        as: path
+  banner:
+    enabled: true
+    message: Manage Interactive Shell! edit your `manage.yml`
+  init_script: print("Starting interactive shell!")
+  readline_enabled: false
